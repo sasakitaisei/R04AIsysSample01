@@ -12,10 +12,8 @@ import com.google.gson.stream.JsonReader;
 public class Sentiment {
 
 	public static void main(String[] args) throws IOException, URISyntaxException, InterruptedException {
-		//Sentiments message = getSentiment("Stepover Toehold With Facelock");
-		Sentiments message = getSentiment("ありがとう");
+		Sentiments message = getSentiment("Stepover Toehold With Facelock");
 		if (message != null) {
-			System.out.println("ありがとうの感情");
 			System.out.println("positive：" + message.documents[0].confidenceScores.positive);
 			System.out.println("neutral：" + message.documents[0].confidenceScores.neutral);
 			System.out.println("neutral：" + message.documents[0].confidenceScores.negative);
@@ -33,6 +31,7 @@ public class Sentiment {
 		Docs2 doc = new Docs2();
 		doc.id = "1";
 		doc.text = s;
+		doc.language="en";
 
 		Source2 src = new Source2();
 		src.documents = new Docs2[1];
@@ -78,6 +77,7 @@ class Source2 {
 }
 
 class Docs2 {
+	String language;
 	String id;
 	String text;
 }
