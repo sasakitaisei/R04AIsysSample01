@@ -1,7 +1,6 @@
 package jp.jc21.t.yoshizawa.WEB01;
 
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.URISyntaxException;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +15,7 @@ public class Sentiment {
 		if (message != null) {
 			System.out.println("positive：" + message.documents[0].confidenceScores.positive);
 			System.out.println("neutral：" + message.documents[0].confidenceScores.neutral);
-			System.out.println("neutral：" + message.documents[0].confidenceScores.negative);
+			System.out.println("negative：" + message.documents[0].confidenceScores.negative);
 			
 		}
 	}
@@ -31,7 +30,7 @@ public class Sentiment {
 		Docs2 doc = new Docs2();
 		doc.id = "1";
 		doc.text = s;
-		doc.language="en";
+		doc.language="ja";
 
 		Source2 src = new Source2();
 		src.documents = new Docs2[1];
@@ -39,9 +38,10 @@ public class Sentiment {
 
 		String jsonData = new Gson().toJson(src);
 
-		InetSocketAddress proxy = new InetSocketAddress("172.17.0.2", 80);
+		//InetSocketAddress proxy = new InetSocketAddress("172.17.0.2", 80);
 
-		JsonReader reader = WebApiConnector.postJsonReader(url, proxy, map, jsonData);
+		//JsonReader reader = WebApiConnector.postJsonReader(url, proxy, map, jsonData);
+		JsonReader reader = WebApiConnector.postJsonReader(url, map, jsonData);
 		Sentiments message = null;
 		if (reader != null) {
 			message = gson.fromJson(reader, Sentiments.class);
