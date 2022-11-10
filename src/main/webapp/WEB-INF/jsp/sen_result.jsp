@@ -12,7 +12,7 @@
 	Optional<String> string = 
 		Optional.ofNullable((String) request.getAttribute("string"));
 	double positive = 
-		(double) request.getAttribute("positive");
+			(double) request.getAttribute("positive");
 	double neutral = 
 			(double) request.getAttribute("neutral");
 	double negative = 
